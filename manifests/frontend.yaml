@@ -11,7 +11,9 @@ spec:
     metadata:
       labels:
         app: frontend
+
     spec:
+      serviceAccountName: frontend
       containers:
         - name: frontend
           image: scrobitsdocker/todo-client:latest

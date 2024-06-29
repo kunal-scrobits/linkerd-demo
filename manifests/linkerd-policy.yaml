@@ -1,4 +1,4 @@
-apiVersion: policy.linkerd.io/v1alpha1
+apiVersion: policy.linkerd.io/v1beta2
 kind: Server
 metadata:
   name: backend
@@ -8,9 +8,11 @@ spec:
     matchLabels:
       app: backend
   port: 5000
-  proxyProtocol: TCP
+  proxyProtocol: opaque
+
 ---
-apiVersion: policy.linkerd.io/v1alpha1
+# backend-server-authorization.yaml
+apiVersion: policy.linkerd.io/v1beta1
 kind: ServerAuthorization
 metadata:
   name: backend-authz
@@ -20,6 +22,5 @@ spec:
     name: backend
   client:
     meshTLS:
-      serviceAccounts:
-        - name: default
-          namespace: todo
+      identities:
+        - "frontend.todo.serviceaccount.identity.linkerd.cluster.local"

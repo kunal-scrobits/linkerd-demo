@@ -80,9 +80,8 @@ linkerd viz dashboard &
 ```
 This command will open the Linkerd dashboard in your default web browser. If it does not, you can manually open it by navigating to `http://localhost:50750`.
 
-#### 4.3 Check whether communication is secured
+#### 4.3 Generate load to our backend app
 
 ```bash
-linkerd viz edges pod --namespace todo
+kubectl run -i --tty load-generator --image=busybox -n todo --restart=Never --rm -- /bin/sh -c "while true; do wget -qO- http://backend:5000/todos; done"
 ```
-
