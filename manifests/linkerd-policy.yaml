@@ -1,0 +1,25 @@
+apiVersion: policy.linkerd.io/v1alpha1
+kind: Server
+metadata:
+  name: backend
+  namespace: todo
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  port: 5000
+  proxyProtocol: TCP
+---
+apiVersion: policy.linkerd.io/v1alpha1
+kind: ServerAuthorization
+metadata:
+  name: backend-authz
+  namespace: todo
+spec:
+  server:
+    name: backend
+  client:
+    meshTLS:
+      serviceAccounts:
+        - name: default
+          namespace: todo
