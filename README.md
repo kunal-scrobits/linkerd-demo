@@ -54,9 +54,9 @@ kubectl label namespace todo linkerd.io/inject=enabled
 ### 2. Apply the Kubernetes Manifests
 
 ```bash
-kubectl apply -f mongo-deployment.yaml -n todo
-kubectl apply -f backend-deployment.yaml -n todo
-kubectl apply -f frontend-deployment.yaml -n todo
+kubectl apply -f mongo.yaml -n todo
+kubectl apply -f backend.yaml -n todo
+kubectl apply -f frontend.yaml -n todo
 ```
 
 #### 3 Inject Linkerd Sidecars into Existing Deployments
